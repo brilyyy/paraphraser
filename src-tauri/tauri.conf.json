@@ -7,8 +7,8 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "paraphraser",
-    "version": "0.0.1"
+    "productName": "parafrase-desktop",
+    "version": "0.0.3"
   },
   "tauri": {
     "allowlist": {
@@ -41,7 +41,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.brilyan.paraphraser",
+      "identifier": "com.brilyan.parafrasedesktop",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
@@ -70,7 +70,7 @@
         "fullscreen": false,
         "height": 800,
         "resizable": false,
-        "title": "paraphraser - brilyan.dev",
+        "title": "parafrase - brilyan.dev",
         "width": 800
       }
     ]

@@ -16,6 +16,8 @@ async function main() {
     `src-tauri/bin/python/main${extension}`,
     `src-tauri/bin/python/main-${targetTriple}${extension}`
   );
+
+  console.log(`File renamed : main-${targetTriple}${extension}`);
 }
 
 main().catch((e) => {

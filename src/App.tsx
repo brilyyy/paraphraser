@@ -26,7 +26,7 @@ function App() {
     <Box p="$4">
       <VStack mb="$5">
         <Text size="2xl" fontWeight="$bold">
-          Paraphraser
+          Parafrase
         </Text>
         <Text color="$danger10">
           Parafrase ini belum 100% sempurna, silakan ubah hasil agar lebih bisa
@@ -44,6 +44,7 @@ function App() {
       <Center>
         <Button
           loading={loading()}
+          loadingText="tunggu... maapin y kalo lama 🗿"
           onClick={async () => {
             setLoading(true);
             const { stdout } = await paraphrase(text());
