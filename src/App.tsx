@@ -26,11 +26,10 @@ function App() {
     <Box p="$4">
       <VStack mb="$5">
         <Text size="2xl" fontWeight="$bold">
-          Parafrase
+          Parafrase 🚀
         </Text>
         <Text color="$danger10">
-          Parafrase ini belum 100% sempurna, silakan ubah hasil agar lebih bisa
-          dibaca!
+          Parafrase ini belum 100% sempurna, baca lagi hasilnya, trs improve deh
         </Text>
       </VStack>
       <Textarea
@@ -38,6 +37,7 @@ function App() {
         my="$2"
         value={text()}
         size="lg"
+        placeholder="teks minimal 20 karakter"
         rows={10}
         onInput={(e) => setText(e.currentTarget.value)}
       />
@@ -45,6 +45,7 @@ function App() {
         <Button
           loading={loading()}
           loadingText="tunggu... maapin y kalo lama 🗿"
+          disabled={!text() || text().length < 20}
           onClick={async () => {
             setLoading(true);
             const { stdout } = await paraphrase(text());

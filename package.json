@@ -1,6 +1,6 @@
 {
-  "name": "parafrase-desktop",
-  "version": "0.0.3",
+  "name": "parafrase",
+  "version": "0.0.1",
   "description": "Sebuah alat parafrase simple, yang tidak luput dari keterbatasan.",
   "scripts": {
     "start": "vite",

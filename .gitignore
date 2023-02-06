@@ -1,3 +1,7 @@
 node_modules
 dist
 build/
+main-aarch64-apple-darwin
+main-x86_64-pc-windows-msvc.exe
+main-x86_64-unknown-linux-gnu
+main.spec
