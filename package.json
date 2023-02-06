@@ -1,6 +1,6 @@
 {
   "name": "parafrase",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Sebuah alat parafrase simple, yang tidak luput dari keterbatasan.",
   "scripts": {
     "start": "vite",
