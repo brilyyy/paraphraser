@@ -4,11 +4,11 @@
   "description": "",
   "scripts": {
     "start": "vite",
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "vite && pnpm rename:py",
+    "build": "pnpm rename:py && vite build",
     "serve": "vite preview",
     "tauri": "tauri",
-    "compile:py": "pyinstaller -F py/main.py --distpath src-tauri/bin/python --clean && pnpm rename:py",
+    "compile:py": "pyinstaller -F py/main.py --distpath src-tauri/bin/python --clean",
     "rename:py": "node generatebinaries.mjs"
   },
   "license": "MIT",
