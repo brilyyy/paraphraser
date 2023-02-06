@@ -1,0 +1,78 @@
+{
+  "build": {
+    "beforeDevCommand": "pnpm compile:py && pnpm dev",
+    "beforeBuildCommand": "pnpm compile:py && pnpm build",
+    "devPath": "http://localhost:1420",
+    "distDir": "../dist",
+    "withGlobalTauri": false
+  },
+  "package": {
+    "productName": "paraphraser",
+    "version": "0.0.1"
+  },
+  "tauri": {
+    "allowlist": {
+      "all": false,
+      "shell": {
+        "all": true,
+        "open": true,
+        "sidecar": true,
+        "scope": [
+          {
+            "name": "bin/python/main",
+            "sidecar": true,
+            "args": true
+          }
+        ]
+      }
+    },
+    "bundle": {
+      "active": true,
+      "category": "Education",
+      "copyright": "brilyan.dev",
+      "deb": {
+        "depends": []
+      },
+      "externalBin": ["bin/python/main"],
+      "icon": [
+        "icons/32x32.png",
+        "icons/128x128.png",
+        "icons/128x128@2x.png",
+        "icons/icon.icns",
+        "icons/icon.ico"
+      ],
+      "identifier": "com.brilyan.paraphraser",
+      "longDescription": "",
+      "macOS": {
+        "entitlements": null,
+        "exceptionDomain": "",
+        "frameworks": [],
+        "providerShortName": null,
+        "signingIdentity": null
+      },
+      "resources": [],
+      "shortDescription": "",
+      "targets": "all",
+      "windows": {
+        "certificateThumbprint": null,
+        "digestAlgorithm": "sha256",
+        "timestampUrl": ""
+      }
+    },
+    "security": {
+      "csp": null
+    },
+    "updater": {
+      "active": false
+    },
+    "windows": [
+      {
+        "fullscreen": false,
+        "height": 800,
+        "resizable": false,
+        "title": "paraphraser - brilyan.dev",
+        "width": 800
+      }
+    ]
+  }
+}
