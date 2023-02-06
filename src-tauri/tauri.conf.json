@@ -1,7 +1,7 @@
 {
   "build": {
-    "beforeDevCommand": "pnpm compile:py && pnpm dev",
-    "beforeBuildCommand": "pnpm compile:py && pnpm build",
+    "beforeDevCommand": "pnpm rename:py && pnpm dev",
+    "beforeBuildCommand": "pnpm rename:py && pnpm build",
     "devPath": "http://localhost:1420",
     "distDir": "../dist",
     "withGlobalTauri": false
