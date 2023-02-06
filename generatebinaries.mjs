@@ -1,5 +1,5 @@
 import { execa } from "execa";
-import { renameSync } from "fs";
+import { renameSync, copyFileSync } from "fs";
 
 let extension = "";
 if (process.platform === "win32") {
@@ -12,7 +12,7 @@ async function main() {
   if (!targetTriple) {
     console.error("Failed to determine platform target triple");
   }
-  renameSync(
+  copyFileSync(
     `src-tauri/bin/python/main${extension}`,
     `src-tauri/bin/python/main-${targetTriple}${extension}`
   );
