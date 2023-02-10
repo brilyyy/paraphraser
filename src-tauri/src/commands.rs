@@ -13,7 +13,7 @@ pub async fn paraphrase(txt: String) -> String {
     caps.add_chrome_arg("--window-size=800,800").err();
 
     // set headless
-    // caps.add_chrome_arg("--headless").err();
+    caps.add_chrome_arg("--headless").err();
 
     let driver = WebDriver::new("http://localhost:2711", caps)
         .await
