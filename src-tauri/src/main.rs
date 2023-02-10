@@ -13,7 +13,6 @@ fn main() {
                     .spawn()
                     .expect("Failed to spawn packaged node");
             });
-
             Ok(())
         })
         .run(tauri::generate_context!())
