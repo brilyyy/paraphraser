@@ -1,14 +1,14 @@
 {
   "build": {
-    "beforeDevCommand": "pnpm rename:py && pnpm dev",
-    "beforeBuildCommand": "pnpm rename:py && pnpm build",
+    "beforeDevCommand": "pnpm copy:bin && pnpm dev",
+    "beforeBuildCommand": "pnpm copy:bin && pnpm build",
     "devPath": "http://localhost:1420",
     "distDir": "../dist",
     "withGlobalTauri": false
   },
   "package": {
     "productName": "parafrase",
-    "version": "0.0.2"
+    "version": "0.0.5"
   },
   "tauri": {
     "allowlist": {
@@ -19,7 +19,12 @@
         "sidecar": true,
         "scope": [
           {
-            "name": "bin/python/main",
+            "name": "bin/rust_paraphrase",
+            "sidecar": true,
+            "args": true
+          },
+          {
+            "name": "bin/chromedriver",
             "sidecar": true,
             "args": true
           }
@@ -33,7 +38,7 @@
       "deb": {
         "depends": []
       },
-      "externalBin": ["bin/python/main"],
+      "externalBin": ["bin/rust_paraphrase", "bin/chromedriver"],
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",

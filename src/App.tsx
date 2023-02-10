@@ -1,4 +1,4 @@
-import { createSignal, Show } from "solid-js";
+import { createSignal, onMount, Show } from "solid-js";
 import { Command } from "@tauri-apps/api/shell";
 import {
   Box,
@@ -16,15 +16,8 @@ import {
   Heading,
 } from "@hope-ui/solid";
 import logo from "./assets/logo.png";
-
 import pkg from "../package.json";
-
-async function paraphrase(text: string) {
-  const clean = text.replace(/"/g, '"').replace(/'/g, "'");
-  const command = Command.sidecar("bin/python/main", clean);
-  const output = await command.execute();
-  return output;
-}
+import trakteerBtn from "./assets/trbtn-red-1.png";
 
 function App() {
   const [result, setResult] = createSignal("");
@@ -33,6 +26,36 @@ function App() {
   const { isOpen, onClose, onOpen } = createDisclosure({
     defaultIsOpen: true,
   });
+
+  async function paraphrase(text: string) {
+    const clean = text.replace(/"/g, '"').replace(/'/g, "'");
+    const command = Command.sidecar("bin/rust_paraphrase", `--text=${clean}`);
+    const output = await command.execute();
+    return output;
+  }
+
+  async function onButtonClick(e: Event) {
+    setLoading(true);
+    try {
+      const { stdout } = await paraphrase(text());
+
+      setResult(stdout.replace(/\s+/g, " ").trim());
+
+      notificationService.show({
+        status: "success",
+        title: "Sukses!",
+        description: "Sukses memparafrase",
+      });
+    } catch (e) {
+      notificationService.show({
+        status: "danger",
+        title: "Error!",
+        description: "Gagal memparafrase",
+      });
+    } finally {
+      setLoading(false);
+    }
+  }
   //
   return (
     <>
@@ -60,26 +83,7 @@ function App() {
             loading={loading()}
             loadingText="tunggu... maapin y kalo lama 🗿"
             disabled={!text() || text().length < 20}
-            onClick={async () => {
-              setLoading(true);
-              const { stdout } = await paraphrase(text());
-              setResult(stdout);
-              if (stdout) {
-                notificationService.show({
-                  status: "success",
-                  title: "Sukses!",
-                  description: "Sukses memparafrase",
-                });
-              } else {
-                notificationService.show({
-                  status: "danger",
-                  title: "Error!",
-                  description: "Gagal memparafrase",
-                });
-              }
-
-              setLoading(false);
-            }}
+            onClick={onButtonClick}
           >
             Paraphrase
           </Button>
@@ -116,11 +120,11 @@ function App() {
             <VStack gap="$2" my="$3">
               <img src={logo} width="150" alt="" />
               <Heading level="2">v{pkg.version}</Heading>
-              <Heading mb="$3">Support developer</Heading>
+              <Heading mb="$3">makasi sawerannya kk ☺️</Heading>
               <a href="https://teer.id/brilyan.dev" target="_blank">
                 <img
                   id="wse-buttons-preview"
-                  src="https://cdn.trakteer.id/images/embed/trbtn-red-1.png"
+                  src={trakteerBtn}
                   height="40"
                   style="border:0px;height:40px;"
                   alt="Trakteer Saya"

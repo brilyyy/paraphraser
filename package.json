@@ -1,6 +1,6 @@
 {
   "name": "parafrase",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "description": "Sebuah alat parafrase simple, yang tidak luput dari keterbatasan.",
   "scripts": {
     "start": "vite",
@@ -8,8 +8,7 @@
     "build": "vite build",
     "serve": "vite preview",
     "tauri": "tauri",
-    "compile:py": "pyinstaller -F py/main.py --distpath src-tauri/bin/python --clean",
-    "rename:py": "node generatebinaries.mjs"
+    "copy:bin": "node ./scripts/prebuild.mjs"
   },
   "license": "MIT",
   "devDependencies": {
