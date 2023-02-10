@@ -16,25 +16,12 @@ async function cpBinaries(targetTriple) {
         `src-tauri/bin/chromedriver-${targetTriple}`
       );
       console.log(`Driver copied: chromedriver-${targetTriple}`);
-
-      // cp processor
-      copyFileSync(
-        `bin/darwin-arm/rust_paraphrase${extension}`,
-        `src-tauri/bin/rust_paraphrase-${targetTriple}${extension}`
-      );
-      console.log(`File copied : rust_paraphrase-${targetTriple}${extension}`);
     } else {
       copyFileSync(
         "bin/darwin-64/chromedriver",
         `src-tauri/bin/chromedriver-${targetTriple}`
       );
       console.log(`Driver copied: chromedriver-${targetTriple}`);
-      // cp processor
-      copyFileSync(
-        `bin/darwin-64/rust_paraphrase${extension}`,
-        `src-tauri/bin/rust_paraphrase-${targetTriple}${extension}`
-      );
-      console.log(`File copied : rust_paraphrase-${targetTriple}${extension}`);
     }
   } else if (opsys == "win32" || opsys == "win64") {
     copyFileSync(
@@ -42,24 +29,12 @@ async function cpBinaries(targetTriple) {
       `src-tauri/bin/chromedriver-${targetTriple}.exe`
     );
     console.log(`Driver copied: chromedriver-${targetTriple}.exe`);
-    // cp processor
-    copyFileSync(
-      `bin/windows/rust_paraphrase${extension}`,
-      `src-tauri/bin/rust_paraphrase-${targetTriple}${extension}`
-    );
-    console.log(`File copied : rust_paraphrase-${targetTriple}${extension}`);
   } else if (opsys == "linux") {
     copyFileSync(
       "bin/linux/chromedriver",
       `src-tauri/bin/chromedriver-${targetTriple}`
     );
     console.log(`Driver copied: chromedriver-${targetTriple}`);
-    // cp processor
-    copyFileSync(
-      `bin/linux/rust_paraphrase${extension}`,
-      `src-tauri/bin/rust_paraphrase-${targetTriple}${extension}`
-    );
-    console.log(`File copied : rust_paraphrase-${targetTriple}${extension}`);
   }
 }
 

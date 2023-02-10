@@ -1,5 +1,5 @@
-import { createSignal, onMount, Show } from "solid-js";
-import { Command } from "@tauri-apps/api/shell";
+import { createSignal, Show } from "solid-js";
+import { invoke } from "@tauri-apps/api/tauri";
 import {
   Box,
   Button,
@@ -14,6 +14,7 @@ import {
   ModalContent,
   ModalOverlay,
   Heading,
+  HStack,
 } from "@hope-ui/solid";
 import logo from "./assets/logo.png";
 import pkg from "../package.json";
@@ -23,23 +24,22 @@ function App() {
   const [result, setResult] = createSignal("");
   const [text, setText] = createSignal("");
   const [loading, setLoading] = createSignal(false);
-  const { isOpen, onClose, onOpen } = createDisclosure({
-    defaultIsOpen: true,
-  });
+  const { isOpen, onClose, onOpen } = createDisclosure();
 
-  async function paraphrase(text: string) {
-    const clean = text.replace(/"/g, '"').replace(/'/g, "'");
-    const command = Command.sidecar("bin/rust_paraphrase", `--text=${clean}`);
-    const output = await command.execute();
-    return output;
+  async function onReset(e: Event) {
+    setResult("");
+    setText("");
   }
 
   async function onButtonClick(e: Event) {
     setLoading(true);
     try {
-      const { stdout } = await paraphrase(text());
+      // const { stdout } = await paraphrase(text());
+      const clean = text().replace(/"/g, '"').replace(/'/g, "'");
 
-      setResult(stdout.replace(/\s+/g, " ").trim());
+      const result: string = await invoke("paraphrase", { txt: clean });
+
+      setResult(result.replace(/\s+/g, " ").trim());
 
       notificationService.show({
         status: "success",
@@ -79,14 +79,19 @@ function App() {
           onInput={(e) => setText(e.currentTarget.value)}
         />
         <VStack gap="$2">
-          <Button
-            loading={loading()}
-            loadingText="tunggu... maapin y kalo lama 🗿"
-            disabled={!text() || text().length < 20}
-            onClick={onButtonClick}
-          >
-            Paraphrase
-          </Button>
+          <HStack gap="$3">
+            <Button
+              loading={loading()}
+              loadingText="tunggu... maapin y kalo lama 🗿"
+              disabled={!text() || text().length < 20}
+              onClick={onButtonClick}
+            >
+              Paraphrase
+            </Button>
+            <Button disabled={!result()} onClick={onReset} colorScheme="danger">
+              Reset
+            </Button>
+          </HStack>
           <Show when={loading()}>
             <Text color="$info10">
               🌈 kalo hasilnya gada klik parafrase lagi aja 🌈
@@ -120,7 +125,7 @@ function App() {
             <VStack gap="$2" my="$3">
               <img src={logo} width="150" alt="" />
               <Heading level="2">v{pkg.version}</Heading>
-              <Heading mb="$3">makasi sawerannya kk ☺️</Heading>
+              <Heading mb="$3">support the developer 🥰</Heading>
               <a href="https://teer.id/brilyan.dev" target="_blank">
                 <img
                   id="wse-buttons-preview"

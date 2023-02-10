@@ -19,11 +19,6 @@
         "sidecar": true,
         "scope": [
           {
-            "name": "bin/rust_paraphrase",
-            "sidecar": true,
-            "args": true
-          },
-          {
             "name": "bin/chromedriver",
             "sidecar": true,
             "args": true
@@ -38,7 +33,7 @@
       "deb": {
         "depends": []
       },
-      "externalBin": ["bin/rust_paraphrase", "bin/chromedriver"],
+      "externalBin": ["bin/chromedriver"],
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
@@ -73,10 +68,10 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 800,
+        "height": 850,
         "resizable": false,
         "title": "parafrase - brilyan.dev",
-        "width": 800
+        "width": 750
       }
     ]
   }
